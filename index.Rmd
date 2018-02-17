@@ -1,0 +1,188 @@
+---
+title: "A6 - Collaboration"
+author: "Madion Smith, Hannah Lee, Justin Chang, Zale de Jong (Team 2)"
+date: "2/13/2018"
+output: html_document
+---
+
+``` {r echo=FALSE, message=FALSE}
+# Sources the file RSourceCode.R.
+source("RSourceCode.R")
+```
+
+---
+
+## Section 1: Summary Statistics Description
+
+Part 1 is a paragraph with basic statistics of responses to a survey given
+in an introductory informatics course. Our team is focusing on whether
+being from Washington state has any relation to one's prior programming
+experience. Note: In order to make the scores easier
+to understand and more consistent, when the range of values were 1 to 5, 
+I took away one from the score to make the range of scores 0 to 4.
+  
+A total of `r total.students` students completed this survey. Of all of these 
+students, `r total.wa.students` were born in Washington
+state and `r total.no.wa.students` were not. `r total.no.reply` students
+did not give where they were born. In the entire class, the average
+programming experience level was `r round(mean.prog.exp, 2) - 1` out of 4,
+which means that the average student in this course had taken CSE 142 and
+some of CSE 143. The Washington-born residents had an average programming
+background of `r round(mean.prog.exp.wa, 2) - 1` and the non-Washington-born
+residents had a slightly higher average  of 
+`r round(mean.prog.exp.no.wa, 2) - 1`. Additionally, all the students, the
+WA-born, and the non-WA-born students, had the most common experience level of
+`r mode.prog.exp`, `r mode.prog.exp.wa` and `r mode.prog.exp.no.wa`,
+respectively.But there were also a wide range of skills among all the students.
+The lowest experience level was `r min.prog.exp`, which meant they had never
+written code and the highest experience level was `r max.prog.exp`, which
+meant they had taken coding classes beyond the CSE intro series. For web
+programming skills, the overall average skill level was 
+`r round(mean.web.prog, 2)` out of 4, which means that the average student
+had web programmed a few times. The Washington-born respondents had a 
+slightly higher experience level of `r round(mean.web.prog.wa, 2)`, than 
+non-Washington-born residents who had a experience level of 
+`r round(mean.web.prog.no.wa, 2)`. For command line, the
+average student in this course had a command line experience level of
+`r round(mean.cd.line, 2)` out of 4, which meant the average student had
+used command line a few times. The non-WA-born students had a slightly higher
+experience level of `r round(mean.cd.line.no.wa, 2)` than the WA-born students
+who had a experience level of `r round(mean.cd.line.wa, 2)`. For Markdown,
+the overall average experience level was `r round(mean.md, 2)` out of 4,
+which means that most students did not have any experience in Markdown.
+The WA-born students had a slightly higher Markdown experience level of
+`r round(mean.md.wa, 2)` than the non-WA born students who had a experience
+level of `r  round(mean.md.no.wa, 2)`. Finally, for R, the average experience
+level was `r round(mean.r, 2)` out of 4 which means that most students had
+never used R before. The WA-born student had a slightly higher experience
+level of `r round(mean.r.wa, 2)` than non-WA-born students who had a
+experience level of `r round(mean.r.no.wa, 2)`. Also, the most common
+operating system for all students was `r mode.os`. The most common operating
+system for WA-born students was `r mode.os.wa` and for non-WA-born students
+was `r mode.os.no.wa`.
+  
+Overall, the statistics for this dataset show no sigificant differences
+in technical backgrounds between Washington-born and not Washington-born
+students. The differences in technical backgrounds between WA-born and
+non-WA-born respondents were usually a few hundredths of a point.
+
+---
+
+## Section 2: Response Statistics Table
+This section will include two tables reporting the break-down of technical experience among the survey respondents. The first table will consist of previous programming experience and the second table will consist of level of familitarity of software tools/programming languages.   
+
+#### Previous programming experience 
+```{r echo = FALSE}
+kable(new.data.frame)
+```
+
+Description of column names:       
+1. **no_experience**     
+- Refers to having never written code    
+2. **experimented**   
+- Refers to having experimented with programming   
+3. **some_experience**   
+- Refers to having some experience with a programming language (e.g CSE142)   
+4. **moderate_experience**    
+- Refers to having moderate experience with a programming language (e.g CSE 143)   
+5. **lots_experinece**   
+- Refers to having lots of experience with programming (e.g beyond CSE 143)   
+6. **total_students**
+- Refers to the total number of students who took the survey      
+      
+#### Level of familitarity of different software tools/programming languages.
+```{r echo = FALSE}
+kable(combine.frame)
+```
+
+Description of row names:         
+1. **cli_exp**     
+- Refers to command.line (a.k.a. the terminal)      
+2. **vcs_exp**   
+- Refers to version control (git & GitHub)      
+3. **md_exp**   
+- Refers to markdown   
+4. **r_exp**    
+- Refers to R language   
+5. **web_exp**   
+- Refers to Web programming (HTML & CSS)      
+ 
+The tables above show a good representation of the wide spectrum of software knowledge as well as experience in writing code. 
+
+---
+
+## Section 3: First Visualization
+
+``` {r echo=FALSE}
+prgmexp
+bargrph
+```
+
+The two graphs above show the relationship between people born in Washington, the OS they use on their computer, and the amount of coding experience the have, in the form of a scatterplot and bar graph. The scatterplot shows that there are a lot of students that have high programming experience who use Windows and Mac OS, regardless of being born in Washington or not. However, the bar graph shows that in higher levels of coding experience there are usually more students from outside of Washington, while lower levels of programming experience have more students that were born in Washington. Of the students born in Washington, the average programming experience is `r washingtonmean`, while students outside of Washington had an average of `r othermean`.
+
+---
+
+## Section 4: Second Visualization
+In Section 4, we will take a look at parts of the data set that have not previously been considered. However, to stay within the framework of the central theme, the new variables will be contrasted against the old variable of whether or not each respondee to the survey was born in Washington state.
+
+The following sub sections will contrast the average cups of coffee drank per day, whether or not the respondee is interested in applying for the Informatics major, and whether or not the respondee is a Seahawks fan to whether or not the respondee was born in Washington state. If a response for any question was left blank, the respondee's answers were disregarded, for the sake of ease and complete data to work with.
+
+
+
+### Cups Of Coffee By Washington Born, Applying For Info, And Seahawks Fans
+``` {r echo=FALSE}
+# Prints the jitter plot all.three.variables.
+print(all.three.variables)
+```
+
+This faceted jitter plot displays the average daily cups of coffee drank by each respondee, and is contrasted against whether or not the person was born in Washington state. The color of each dot corresponds to the degree of which they are a Seahawks fan, which provides additional information to the plot. However, all of the variables presented on one graph requires more time to take in all of the information, and so separate graphs contrasting only one variable against another are provided.
+
+Most of the data is centered on the lower end of the number of coffee cups drank daily, of which the data was very similar across both born in Washington and not born in Washington. On average, those who responded "Yes"" to applying to Info reached higher numbers of coffee cups drank daily, then "No"" and "N/A"" the same distribution, and "Not sure"" as the least number of cups drank. The largest difference between those born in Washington and not was found in the group responding "Not sure", of which those who were born in Washington all responded zero cups, and those born outside of Washington drinking up to two cups of coffee.
+
+One data point was removed, where the respondee answered that they drink 8,000,000 cups of coffee daily.
+
+### Cups Of Coffee By Washington Born
+``` {r echo=FALSE}
+# Prints the jitter plot coffee.versus.washington.
+print(coffee.versus.washington)
+```
+
+This jitter plot shows the average daily cups of coffee against whether or not the respondee was born in Washington. Since the graph displays one variable against a count, and there are a large number of responses, the points are somewhat transparent to allow for easier understanding of the number of responses at each count.
+
+The distribution of average coffee cups drank daily is virtually the same for those born in Washington and those born elsewhere. Most of the repondees answered on the lower end, with most of the responses ranging from zero to three cups and decreasing in frequency as the number of cups increased.
+
+Some statistcal analysis supplements the jitter plot well. The average number of coffee cups drank by all respondees was `r coffee.mean`, the average number of cups drank by those born in Washington was `r coffee.mean.washington`, and the average number of cups drank by those not born in Washington was `r coffee.mean.not.washington`. This indicates that most people enrolled in the class, regardless whether or not they were born in Washington, drink an average of one cup of coffee a day, and that state born was not a large factor affecting it.
+
+The median number of coffee cups drank by all respondees was `r coffee.median`, the median number of cups drank by those born in Washington was `r coffee.median.washington`, and the median number of cups drank by those not born in Washington was `r coffee.median.not.washington`. 
+
+
+
+### Applying For Informatics By Washington Born
+``` {r echo=FALSE}
+# Prints the bar graph info.versus.washington.
+print(info.versus.washington)
+```
+
+This bar graph displays the number of responses of how respondees feel about applying for Informatics against whether or not the respondee was born in Washington. The four levels of interest are displayed next to each other instead of stacked to allow for easier understanding of the number of responses in each category.
+
+Generally, the distribtion of categories for those interested in applying for Info for those born in Washington and those not born in Washington is very similar. The largest difference is that those not born in Washington were more likely to respond "Not sure" than those born in Washington.
+
+Additional statiscal analysis was also performed along with the bar graph. The most frequent response for all respondees was `r info.mode`, the most frequent response for those born in Washington was `r info.mode.washington`, and the most frequency response for those born outside of Washington was `r info.mode.not.washington`. This indicates that regardless of state born, most people enrolled in the class are interested in applying for the major, and that state born did not change the distribution of those interested or not by a large degree.
+
+
+
+### Seahawks Fans By Washington Born
+``` {r echo=FALSE}
+# Prints the bar graph seahawks.versus.washington.
+print(seahawks.versus.washington)
+```
+
+This graph shows the degree to which each respondee is a Seahawks fan contrasted against whether or not the respondee was born in Washington. The varying degrees are displayed next to each other instead of stacked in order to more easily understand the number of responses in each category.
+
+Unlike previous graphs, the distribution of categories for the degree to which respondees were Seahawks fans were largely different for those born in Washington and those born elsewhere. Strangely enough, the number of students enrolled in the class who answered "Yes" were almost the same contrasted against place born, but the difference emerges when considering the "No" and "YES!!!" categories, of which those born outside of Washington were more likely to respond "No", and those born in Washington more likely to respond "YES!!!", which confirms a logical assumption that those born within a state are more likely to support their state's football team.
+
+Statistical analysis of the data proves helpful in supplementing understanding. The most frequent response for all respondees was `r seahawks.mode`, the most frequent response for those born in Washington was `r seahawks.mode.washington`, and the most frequent response for those not born in Washington was `r seahawks.mode.not.washington`. These results indicate that most people enrolled in the class are Seahawksfans, but for those born out of the state of Washington, there is a greater number of people who are not fans versus normal fans and avid fans not combined.
+
+
+### Section 4 Conclusion
+Although one data set with three variables is just as descriptive as single variable plots, sometimes it is easier to understand data when it is broken down into simpler data visualizations. However, each visualization gave a different type of information, and so it is sometimes better to choose one with more information than to choose only one and not have any other data to compare it to. For instance, the average student enrolled drinks one cup of coffee a day, is interested in applying for Informatics, and is a Seahawks fan, which can only be inferred from a graph with all variables included or contrasting all three individual ones.
